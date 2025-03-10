@@ -15,8 +15,8 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      // TODO: Implementar algún tipo de bandera para que se muestre solo
-      // cuando el usuario no haya iniciado sesión o no se haya registrado
+      // TODO: Realmente el home es donde se encuentra la camara y la barra de navegación
+      // pero para hacer pruebas y organizar las ventanas está puesta la ventana de bienvenida
       home: const LoginRegister(),
     );
   }

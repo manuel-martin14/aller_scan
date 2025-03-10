@@ -9,13 +9,6 @@
   y la otra sea iniciar sesión con otra cuenta o cerrar sesión y
   mostrar la ventana de inicio para acceder con otra.
 
-[FLAGS]
-- La primera vez que un usuario acceda a la aplicación ya sea
-  porque es la primera vez que la descarga o que la borró y la volvió
-  a instalar, debe aparecer la ventana <LoginRegister> para que el usuario
-  seleccione que desea hacer. Por lo que cuando vuelva a acceder una vez hecho
-  esto, no debe aparecer a no ser que la vuelva a borrar e instalar.
-
 [CHECK BOX CORREO VENTANA REGISTRO]
 - La idea sería almacenarlo en la base de datos como un booleano y ya una vez
   terminemos la aplicación podríamos integrar el hecho de enviar correos pero
@@ -30,7 +23,16 @@
 
   Ejemplos: Firedatabase, Mongo ATLAS ...
 
-[FIXME]
-- En la ventana <ChangePassword> ambos campos utilizan el mísmo icono del ojo por lo que al pulsar
-  uno se aplica el cambio en ambos campos, dentro de lo que cabe no estaría mal realmente pero se
-  puede mejorar.
+[COSAS A TENER EN CUENTA]
+- Por ahora lo primero que se muestra es la ventana de bienvenida
+  pero lo suyo es que la ventana inicial sea el propio HOME que es
+  donde estará la camara...
+  De manera que habrá que hacer que cuando el usuario acceda por primera vez se muestre
+  primero la ventana de bienvenida.
+
+[LISTA PARA SELECCIONAR LOS ALERGENOS]
+- Lo suyo sería sacarlos de la base de datos y así el usuario pueda seleccionarlos.
+  Esta ventana se muestra en el proceso de registro y también se puede acceder a ella
+  desde los ajustes para seleccionar más alergenos en caso de que el usuario se haya olvidado
+  o incluso desmarcar en caso de equivocación.
+  Todos estos cambios deberán verse afectados en la base de datos.

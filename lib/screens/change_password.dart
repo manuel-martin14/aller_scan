@@ -22,8 +22,12 @@ class _ChangePassword extends State<ChangePassword> {
     // Si es nulo (?) le asignamos por defecto el valor false con el operando ??
     // en caso de no ser nulo o false, se cumplirá la condición
     if (_formKey.currentState?.validate() ?? false) {
-      // TODO: Cambiar contraseña en la base de datos y mostrar la ventana del inicio de sesión
-      // o mostrar la ventana de ajustes en función de donde se haya solicitado cambiar la contraseña
+      // Notifica al usuario que la contraseña ha sido actualiza y lo retorna a la ventana anterior
+      // por lo que da igual desde donde se cambie la contraseña que siempre volverá a donde corresponde
+       ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Contraseña cambiada exitosamente")),
+      );
+       Navigator.pop(context);
     }
   }
 
@@ -62,7 +66,7 @@ class _ChangePassword extends State<ChangePassword> {
                     TextFormField(
                       controller: _firstPasswordController,
                       decoration: InputDecoration(
-                        hintText: "contraseña",
+                        hintText: "contraseña nueva",
                         hintStyle: TextStyle(color: Colors.black),
                         border: OutlineInputBorder(),
                         filled: true,
@@ -119,7 +123,7 @@ class _ChangePassword extends State<ChangePassword> {
                       horizontal: 110,
                       vertical: 12)
                   ),
-                  child: Text("Continuar")),
+                  child: Text("Confirmar")),
                 )
               ],
             ),
