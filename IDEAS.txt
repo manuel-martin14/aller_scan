@@ -1,0 +1,36 @@
+[REUTILIZAR VENTANAS]
+- La ventana de restaurar contraseña se utiliza tanto en el
+  inicio de sesión (en caso de olvidar la contraseña) y en
+  ajustes para la opción de cambiar contraseña.
+
+- Tanto la ventana de registro e inicio de sesión se pueden
+  reutilizar para añadir 2 opciones en ajustes. Donde una sea
+  crear una nueva cuenta (donde se reutiliza la ventana de registro)
+  y la otra sea iniciar sesión con otra cuenta o cerrar sesión y
+  mostrar la ventana de inicio para acceder con otra.
+
+[FLAGS]
+- La primera vez que un usuario acceda a la aplicación ya sea
+  porque es la primera vez que la descarga o que la borró y la volvió
+  a instalar, debe aparecer la ventana <LoginRegister> para que el usuario
+  seleccione que desea hacer. Por lo que cuando vuelva a acceder una vez hecho
+  esto, no debe aparecer a no ser que la vuelva a borrar e instalar.
+
+[CHECK BOX CORREO VENTANA REGISTRO]
+- La idea sería almacenarlo en la base de datos como un booleano y ya una vez
+  terminemos la aplicación podríamos integrar el hecho de enviar correos pero
+  no sería desde la propia aplicación o si, no se.
+
+[BASE DE DATOS]
+- Cuando el usuario se registra o hace algún cambio en su perfil desde los ajustes,
+  se debe actualizar en la base de datos. Todo esto es mejor hacerlo con dart para
+  ahorrar código.
+- Hay que descubrir que base de datos vamos a utilizar (lo suyo sería una que podamos
+  acceder desde el móvil para mostrarlo el día de la presentación y que realmente sea funcional)
+
+  Ejemplos: Firedatabase, Mongo ATLAS ...
+
+[FIXME]
+- En la ventana <ChangePassword> ambos campos utilizan el mísmo icono del ojo por lo que al pulsar
+  uno se aplica el cambio en ambos campos, dentro de lo que cabe no estaría mal realmente pero se
+  puede mejorar.
