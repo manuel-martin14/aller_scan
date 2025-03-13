@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:aller_scan/screens/change_password.dart';
+import 'package:aller_scan/screens/home.dart';
 
 class LoginScreen extends StatefulWidget{
   const LoginScreen({super.key});
@@ -25,6 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
     // en caso de no ser nulo o false, se cumplirá la condición
     if (_formKey.currentState?.validate() ?? false) {
       // TODO: Consultar base de datos. En caso de existir el usuario accede
+      Navigator.push(
+        context, 
+        MaterialPageRoute(builder: (context) => Home()));
     }
   }
 
@@ -70,14 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fillColor: const Color.fromARGB(255, 204, 202, 202)
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Introduzca un correo";
-                        }
-                        // Expresión regular simple para validar el correo
-                        if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").hasMatch(value)) {
-                          return "Introduzca un correo válido";
-                        }
-                        return null;
+                        return validateEmail(value);
                       }
                     )
                 ),
@@ -109,13 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       obscureText: _passwordInvisible,
                       maxLength: 25,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Introduzca una contraseña";
-                        }
-                        if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
-                          return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
-                        }
-                        return null;
+                        return validatePassword(value);
                       },
                     )
                 ),
@@ -161,5 +152,26 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  String? validatePassword(String? value) {
+                          if (value == null || value.isEmpty) {
+      return "Introduzca una contraseña";
+    }
+    if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
+      return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Introduzca un correo";
+    }
+    // Expresión regular simple para validar el correo
+    if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").hasMatch(value)) {
+      return "Introduzca un correo válido";
+    }
+    return null;
   }
 }

@@ -69,14 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fillColor: const Color.fromARGB(255, 204, 202, 202)
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Introduzca un correo";
-                        }
-                        // Expresión regular simple para validar el correo
-                        if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").hasMatch(value)) {
-                          return "Introduzca un correo válido";
-                        }
-                        return null;
+                        return validateEmail(value);
                       }
                     )
                 ),
@@ -108,13 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       obscureText: _passwordInvisible,
                       maxLength: 25,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Introduzca una contraseña";
-                        }
-                        if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
-                          return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
-                        }
-                        return null;
+                        return validatePassword(value);
                       },
                     )
                 ),
@@ -150,5 +137,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Introduzca una contraseña";
+    }
+    if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
+      return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Introduzca un correo";
+    }
+    // Expresión regular simple para validar el correo
+    if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").hasMatch(value)) {
+      return "Introduzca un correo válido";
+    }
+    return null;
   }
 }

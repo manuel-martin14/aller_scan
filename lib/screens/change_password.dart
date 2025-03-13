@@ -141,7 +141,7 @@ class _ChangePassword extends State<ChangePassword> {
       return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
     }
     if (firstPasswordController != secondPasswordController) {
-      return "La contraseña debe ser la misma en ambos campos";
+      return "Las contraseñas no coinciden";
     }
     return null;
   }
