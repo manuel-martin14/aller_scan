@@ -26,9 +26,15 @@ class _LoginScreenState extends State<LoginScreen> {
     // en caso de no ser nulo o false, se cumplirá la condición
     if (_formKey.currentState?.validate() ?? false) {
       // TODO: Consultar base de datos. En caso de existir el usuario accede
-      Navigator.push(
-        context, 
-        MaterialPageRoute(builder: (context) => Home()));
+
+      // Esto elimina todas las rutas anteriores de la pila de navegación de manera que una vez en el home
+      // el usuario no puede retroceder a las ventanas anteriores de manera que se evita que una vez iniciado sesión,
+      // vuelva a la ventana de inicio de sesión.
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const Home()),
+        (route) => false,
+      );
     }
   }
 
