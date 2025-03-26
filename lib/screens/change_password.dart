@@ -1,3 +1,4 @@
+import 'package:aller_scan/service/user_service.dart';
 import 'package:flutter/material.dart';
 
 class ChangePassword extends StatefulWidget{
@@ -8,6 +9,9 @@ class ChangePassword extends StatefulWidget{
 }
 
 class _ChangePassword extends State<ChangePassword> {
+  // Servicios
+  final UserService _userService = UserService();
+
   // Clave global para el formulário
   final _formKey = GlobalKey<FormState>();
 
@@ -75,7 +79,10 @@ class _ChangePassword extends State<ChangePassword> {
                       obscureText: _passwordInvisible,
                       maxLength: 25,
                       validator: (value) {
-                        return validatePassword(value, _firstPasswordController.text, _secondPasswordController.text);
+                        return _userService.validatePassword(value,
+                            firstPasswordController: _firstPasswordController.text,
+                            secondPasswordController: _secondPasswordController.text
+                        );
                       },
                     )
                 ),
@@ -107,7 +114,10 @@ class _ChangePassword extends State<ChangePassword> {
                       obscureText: _passwordInvisible,
                       maxLength: 25,
                       validator: (value) {
-                        return validatePassword(value, _firstPasswordController.text, _secondPasswordController.text);
+                        return _userService.validatePassword(value,
+                            firstPasswordController: _firstPasswordController.text,
+                            secondPasswordController: _secondPasswordController.text
+                        );
                       },
                     )
                 ),
@@ -131,18 +141,5 @@ class _ChangePassword extends State<ChangePassword> {
         ),
       ),
     );
-  }
-
-  String? validatePassword(String? value, String? firstPasswordController, String? secondPasswordController) {
-    if (value == null || value.isEmpty) {
-      return "Introduzca una contraseña";
-    }
-    if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
-      return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
-    }
-    if (firstPasswordController != secondPasswordController) {
-      return "Las contraseñas no coinciden";
-    }
-    return null;
   }
 }

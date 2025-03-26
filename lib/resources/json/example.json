@@ -1,0 +1,9 @@
+{
+  "userToken": "example",
+  "isDarkMode": true,
+  "language": "es",
+  "notificationsEnabled": true,
+  "lastLogin": "2025-03-26T14:00:00Z",
+  "userName": "Juan Pérez",
+  "appVersion": "1.0.0"
+}

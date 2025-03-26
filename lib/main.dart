@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
       ),
       // TODO: Realmente el home es donde se encuentra la camara y la barra de navegación
       // pero para hacer pruebas y organizar las ventanas está puesta la ventana de bienvenida
-      home: const LoginRegister(),
+      home: const   LoginRegister(),
     );
   }
 }

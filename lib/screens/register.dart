@@ -1,3 +1,4 @@
+import 'package:aller_scan/service/user_service.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget{
@@ -8,6 +9,9 @@ class RegisterScreen extends StatefulWidget{
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // Servicios
+  final UserService _userService = UserService();
+
   // Clave global para el formulário
   final _formKey = GlobalKey<FormState>();
 
@@ -69,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fillColor: const Color.fromARGB(255, 204, 202, 202)
                       ),
                       validator: (value) {
-                        return validateEmail(value);
+                        return _userService.validateEmail(value);
                       }
                     )
                 ),
@@ -101,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       obscureText: _passwordInvisible,
                       maxLength: 25,
                       validator: (value) {
-                        return validatePassword(value);
+                        return _userService.validatePassword(value);
                       },
                     )
                 ),
@@ -137,26 +141,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
-  }
-
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Introduzca una contraseña";
-    }
-    if (value.length < 6 || !RegExp(r'^(?=.*[!@#\$%\^])').hasMatch(value)) {
-      return "Mínimo 6 caracteres y al menos uno especial \nentre estos !@#\$%^";
-    }
-    return null;
-  }
-
-  String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Introduzca un correo";
-    }
-    // Expresión regular simple para validar el correo
-    if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").hasMatch(value)) {
-      return "Introduzca un correo válido";
-    }
-    return null;
   }
 }
